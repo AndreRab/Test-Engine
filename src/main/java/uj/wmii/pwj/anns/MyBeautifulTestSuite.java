@@ -2,24 +2,35 @@ package uj.wmii.pwj.anns;
 
 public class MyBeautifulTestSuite {
 
-    @MyTest
-    public void testSoemthing() {
+    @MyTest(params = {"1,2", "2,3"}, result = {"3", "5"})
+    public int testWithTwoParametrs(Integer a, Integer b) {
         System.out.println("I'm testing something!");
+        return a + b;
     }
 
-    @MyTest(params = {"a param", "b param", "c param. Long, long C param."})
-    public void testWithParam(String param) {
-        System.out.printf("I was invoked with parameter: %s\n", param);
+    @MyTest(params = {"1.2", "2.3"}, result = {"2.2", "3.3"})
+    public float testWithFloat(Float a) {
+        return a + 1;
+    }
+
+    @MyTest(result = "lol", params = {"lol"})
+    public String testWithSingleParam(String param) {
+        return param;
     }
 
     public void notATest() {
         System.out.println("I'm not a test.");
     }
 
-    @MyTest
+    @MyTest(result = "")
     public void imFailue() {
         System.out.println("I AM EVIL.");
         throw new NullPointerException();
+    }
+
+    @MyTest(params = {"true", "false", "false"}, result = {"false", "false", "false" })
+    public boolean testWithWrongAnswer(Boolean b) {
+        return !b;
     }
 
 }
