@@ -61,7 +61,7 @@ public class MyTestEngine {
             }
         }
         System.out.printf("Engine launched %d tests.\n", successCount + failCount + errorCount);
-        System.out.printf("%d of them passed, %d failed, %d errors.\n\n", successCount, failCount, errorCount);
+        System.out.printf(ASCIIIBoard.GREEN + "%d of them passed," +  ASCIIIBoard.RED + " %d failed, " + ASCIIIBoard.YELLOW + "%d errors.\n\n" + ASCIIIBoard.RESET, successCount, failCount, errorCount);
     }
 
     private TestResult launchSingleMethod(Method m, Object unit, String[] paramsFromAnnotation, String realResult) {
@@ -84,16 +84,16 @@ public class MyTestEngine {
                 else System.out.print("}: ");
             }
             if(realResult.equals(result.toString())){
-                System.out.println(" test successful.");
+                System.out.println(ASCIIIBoard.GREEN + "test successful." + ASCIIIBoard.RESET);
                 return TestResult.PASS;
             }
             else{
-                System.out.println(" test failed.");
+                System.out.println(ASCIIIBoard.RED + "test failed." + ASCIIIBoard.RESET);
                 System.out.println("Expected value: " + realResult + ". But get: " + result.toString());
                 return TestResult.FAIL;
             }
         } catch (ReflectiveOperationException e) {
-            System.out.println("Tested method '" + m.getName() + "': test with error.");
+            System.out.println("Tested method '" + m.getName() + "': " + ASCIIIBoard.YELLOW + "test with error." + ASCIIIBoard.RESET);
             e.printStackTrace();
             return TestResult.ERROR;
         }

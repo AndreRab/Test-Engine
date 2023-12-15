@@ -9,5 +9,5 @@ import java.lang.annotation.Target;
 @Target(ElementType.METHOD)
 public @interface MyTest {
     String[] params() default {};
-    String[] result();
+    String[] result() default {""};
 }

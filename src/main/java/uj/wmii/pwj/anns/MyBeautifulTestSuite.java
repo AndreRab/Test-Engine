@@ -22,7 +22,7 @@ public class MyBeautifulTestSuite {
         System.out.println("I'm not a test.");
     }
 
-    @MyTest(result = "")
+    @MyTest()
     public void imFailue() {
         System.out.println("I AM EVIL.");
         throw new NullPointerException();
